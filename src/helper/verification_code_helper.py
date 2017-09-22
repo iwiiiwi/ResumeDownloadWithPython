@@ -1,5 +1,6 @@
 COLOR_RGB_BLACK=0
 
+# def get
 
 def get_projection_x(img):
     p_x=[0 for _ in xrange(img.size[0])]
@@ -22,7 +23,7 @@ def get_joint_img(projection_x):
         if val==0 and joint ==0:
             continue
         elif val==0 and joint ==1:
-            if len<14:
+            if len<22:
                 len=0
                 joint=0
                 pos_x=0
