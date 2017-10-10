@@ -10,7 +10,7 @@ import util
 import errors
 
 # tesseract_exe_name = 'tesseract' # Name of executable to be called at command line
-tesseract_exe_name = 'F:/workspase/ResumeDownloadWithPython/src/helper/pytesser/tesseract'
+tesseract_exe_name = 'E:/workspase/ResumeDownloadWithPython/src/helper/pytesser/tesseract'
 scratch_image_name = "temp.bmp" # This file must be .bmp or other Tesseract-compatible format
 scratch_text_name_root = "temp" # Leave out the .txt extension
 cleanup_scratch_flag = True  # Temporary files cleaned up after OCR operation
