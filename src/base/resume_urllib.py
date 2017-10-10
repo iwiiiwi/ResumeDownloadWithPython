@@ -10,7 +10,7 @@ def download_pic():
     reg=r'http://newrms.cjol.com/Common/ValidateCodePicture.+"'
     imgre=re.compile(reg)
     imglist=re.findall(imgre,html)
-    img=imglist[0][:-1]
+    imgUrl=imglist[0][:-1]
     t = time.localtime(time.time())
     foldername = str(t.__getattribute__("tm_mon"))+"-"+str(t.__getattribute__("tm_mday"))+str(t.__getattribute__("tm_hour"))+str(t.__getattribute__("tm_min"))+str(t.__getattribute__("tm_sec"))
     picpath=os.path.abspath('../ValidateCodePicture')
@@ -18,8 +18,19 @@ def download_pic():
         os.makedirs(picpath)
     target=picpath+'\\%s.jpg' %foldername
     with open(target,"wb") as file:
-        file.write(urllib2.urlopen(img).read())
-    print(imglist)
+        file.write(urllib2.urlopen(imgUrl).read())
+    return target
 
-for x in range(10):
-    download_pic()
+# for x in range(10):
+#     download_pic()
+
+
+# def get_pic():
+#     response=urllib2.urlopen('http://www.cjol.com/hr/')
+#     html=response.read()
+#     # <img id="validatecodePicture_layer" border="0" class="img-hrcode" src="http://newrms.cjol.com/Common/ValidateCodePicture?Key=1&amp;guid=714c2dab-383f-0ee0-be22-be1b8a4d8d51">
+#     reg=r'http://newrms.cjol.com/Common/ValidateCodePicture.+"'
+#     imgre=re.compile(reg)
+#     imglist=re.findall(imgre,html)
+#     imgUrl=imglist[0][:-1]
+#     urllib2.urlopen(imgUrl).read()
