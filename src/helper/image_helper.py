@@ -40,6 +40,7 @@ def cut_word_with_location(location_list, img):
         region = img.crop(box)
         region.show()
         result += pytesser.image_to_string(region)
+        print(result)
     return result.replace('\n', '')
 
 
@@ -65,11 +66,10 @@ def get_resume(out):
     location_list = get_location_cut(x_range)
     print(location_list)
     result = cut_word_with_location(location_list, out)
+    print(result)
     if result.isalnum() and len(result) == 5:
         m_result = result
-        print(m_result)
     else:
         m_result = pytesser.image_to_string(out)
-        print(m_result)
     print(m_result)
     return m_result
