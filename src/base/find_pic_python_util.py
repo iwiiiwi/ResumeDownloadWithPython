@@ -1,4 +1,5 @@
 import random
+import os
 
 
 def get_img_points(img, percent):
@@ -36,13 +37,15 @@ def __eql_color__(big_img, center_point, get_center_point, points, points_colors
 
         if big_color == small_color:
             count+=1
-        print(float(count) / float(len(points)))
+        p=float(count) / float(len(points))
+        if p>0.1:
+            print(p)
         if float(count) / float(len(points)) >= percent:
             result = True
     return result
 
 
-def __eql_img__(big_img, small_img, percent, center_point, points):
+def __eql_img__(big_img, small_img, percent, center_point, points,react_percent):
     result = False
     point=(-1,-1)
     x = 0
@@ -56,8 +59,11 @@ def __eql_img__(big_img, small_img, percent, center_point, points):
         color=small_img.getpixel((p_x, p_y))
         points_colors.append(color)
 
-    for j in xrange(max_x):
-        for k in xrange(max_y):
+    if react_percent is None:
+        react_percent=(0,0,1,1)
+    x,y,w,h=react_percent
+    for j in xrange(int(max_x*x),int(max_x*(x+w))):
+        for k in xrange(int(max_y*y),int(max_y*(y+h))):
             get_center_point = (j, k)
             get_center_point_color = big_img.getpixel((j, k))
             if center_point_color == get_center_point_color:
@@ -71,11 +77,20 @@ def __eql_img__(big_img, small_img, percent, center_point, points):
     return point
 
 
-def find_pic(big_img, serch_bmp, percent, points):
-    center_points = get_img_points(serch_bmp, 5)
+def create_search_pic(big_img,point,width,height):
+    box=(point[0],point[1],point[0]+width,point[1]+height)
+    cut_img=big_img.crop(box)
+    name="cut_"+big_img.filename[big_img.filename.rfind('\\')+1:len(big_img.filename)]
+    picpath=os.path.abspath('../ValidateCodePicture')+'/'+name
+    # if not os.path.exists(picpath):
+    #     os.makedirs(picpath)
+    cut_img.save(picpath,'JPEG')
+
+def find_pic(big_img, search_bmp, percent, points,react_percent):
+    center_points = get_img_points(search_bmp, 5)
     for i in xrange(len(center_points)):
         center_point = center_points[i]
-        point=__eql_img__(big_img, serch_bmp, percent, center_point, points);
+        point=__eql_img__(big_img, search_bmp, percent, center_point, points,react_percent);
         if point!=(-1,-1):
             print('find out')
             break
