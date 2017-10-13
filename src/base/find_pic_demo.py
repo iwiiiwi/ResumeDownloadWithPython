@@ -3,8 +3,8 @@ from find_pic_python_util import *
 import datetime
 
 def create_start_button(big_bmp):
-    point=(498,560)
-    width,height=(280,67)
+    point=(574,577)
+    width,height=(138,32)
     create_search_pic(big_bmp,point,width,height)
 
 def show_pic_result(big_bmp,search_bmp):
@@ -25,7 +25,10 @@ def show_pic_result(big_bmp,search_bmp):
 #
 big_bmp = Image.open("F:\\workspase\\ResumeDownloadWithPython\\src\\ValidateCodePicture\\681933661796332341.jpg")
 search_bmp = Image.open("F:\\workspase\\ResumeDownloadWithPython\\src\ValidateCodePicture\\cut_681933661796332341.jpg")
+print_color_pic(big_bmp)
+print_color_pic(search_bmp)
+# create_start_button(big_bmp)
 # big_bmp = Image.open("F:\\workspase\\ResumeDownloadWithPython\\src\\ValidateCodePicture\\10-11221441login.png")
 # search_bmp = Image.open("F:\\workspase\\ResumeDownloadWithPython\\src\ValidateCodePicture\\10-11221441code.png")
 # search_bmp = Image.open("F:\\workspase\\ResumeDownloadWithPython\\src\ValidateCodePicture\\cut_10-11221441login.png")
-show_pic_result(big_bmp,search_bmp)
+# show_pic_result(big_bmp,search_bmp)

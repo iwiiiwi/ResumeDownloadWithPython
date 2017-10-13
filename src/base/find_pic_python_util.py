@@ -76,14 +76,26 @@ def __eql_img__(big_img, small_img, percent, center_point, points,react_percent)
             break
     return point
 
+def print_color_pic(img):
+    name=img.filename[img.filename.rfind('\\')+1:len(img.filename)][0:img.filename[img.filename.rfind('\\')+1:len(img.filename)].rfind('.')]+".text"
+    picpath=os.path.abspath('../ValidateCodePicture')+'/'+name
+    x,y=img.size
+    colors=[]
+    for i in xrange(x):
+        for j in xrange(y):
+            color=img.getpixel((i,j))
+            colors.append(color)
+    with open(picpath,"wb") as file:
+        file.writelines(str(colors))
+
+
+
 
 def create_search_pic(big_img,point,width,height):
     box=(point[0],point[1],point[0]+width,point[1]+height)
     cut_img=big_img.crop(box)
     name="cut_"+big_img.filename[big_img.filename.rfind('\\')+1:len(big_img.filename)]
     picpath=os.path.abspath('../ValidateCodePicture')+'/'+name
-    # if not os.path.exists(picpath):
-    #     os.makedirs(picpath)
     cut_img.save(picpath,'JPEG')
 
 def find_pic(big_img, search_bmp, percent, points,react_percent):
