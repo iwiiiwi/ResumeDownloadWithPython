@@ -1,6 +1,7 @@
 from PIL import Image
 from find_pic_python_util import *
 import datetime
+import os
 
 def create_start_button(big_bmp):
     point=(574,577)
@@ -23,8 +24,9 @@ def show_pic_result(big_bmp,search_bmp):
 
 
 #
-big_bmp = Image.open("E:\\Workspase\\ResumeDownloadWithPython\\src\\ValidateCodePicture\\681933661796332341.jpg")
-search_bmp = Image.open("E:\\Workspase\\ResumeDownloadWithPython\\src\ValidateCodePicture\\cut_681933661796332341.jpg")
+base_path=os.path.abspath(os.path.join(os.path.dirname(__file__),'../ValidateCodePicture'))
+big_bmp = Image.open(base_path+"/681933661796332341.jpg")
+search_bmp = Image.open(base_path+"/cut_681933661796332341.jpg")
 # point=(574,577)
 # width,height=(138,32)
 # box=(point[0],point[1],point[0]+width,point[1]+height)
