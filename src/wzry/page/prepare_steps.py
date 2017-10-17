@@ -4,7 +4,7 @@ from use_steps import *
 
 def prepare_steps(driver):
     __prepare_start_game__(driver)
-    click_start_game_position(driver)
+    # click_start_game_position(driver)
     __prepare_close_window_normal__(driver)
     __prepare_close_video__(driver)
     __prepare_prepare_friend__(driver)

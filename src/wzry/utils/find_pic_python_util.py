@@ -30,7 +30,6 @@ def __eql_color__(big_img, center_point, get_center_point, points, points_colors
         test_point_y = test_point_y - center_point_y + get_center_point_y
 
         if test_point_x < 0 or test_point_y < 0 or test_point_x >= big_img_width or test_point_y >= big_img_height:
-            print('break')
             break
         big_color = big_img.getpixel((test_point_x, test_point_y))
         small_color = points_colors[i]
@@ -38,10 +37,9 @@ def __eql_color__(big_img, center_point, get_center_point, points, points_colors
         if big_color == small_color:
             count+=1
         p=float(count) / float(len(points))
-        if p>0.1:
-            print(p)
         if float(count) / float(len(points)) >= percent:
             result = True
+            break
     return result
 
 
@@ -88,7 +86,7 @@ def print_color_pic(img):
     with open(picpath,"wb") as file:
         file.writelines(str(colors))
 
-def find_pic(big_img, search_bmp, percent, points,react_percent):
+def find_pic(big_img, search_bmp, percent, points,react_percent=(0,0,1,1)):
     center_points = get_img_points(search_bmp, 5)
     for i in xrange(len(center_points)):
         center_point = center_points[i]
